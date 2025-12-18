@@ -1,3 +1,6 @@
+# Auto-generated from pyproject.toml
+# For development: pip install -e ".[dev]"
+
 # LangChain
 langchain>=0.3.0
 langchain-google-genai>=2.0.0
@@ -16,9 +19,5 @@ python-dotenv>=1.0.0
 # AWS S3
 boto3>=1.34.0
 
-# Google Gemini (Files API용 - PDF 직접 처리)
+# Google Gemini (Files API)
 google-genai>=1.0.0
-
-# 추후 확장용 (현재 주석 처리)
-# playwright>=1.40.0
-# selenium>=4.15.0
