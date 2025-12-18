@@ -8,13 +8,13 @@
   },
   "inputs": {
     "company_profile_ref": {
-      "profile_id": "string|unknown",
+      "company_name": "string|unknown",
       "source_docs": [
         { "doc_id": "string|unknown", "filename": "string|unknown" }
       ]
     },
     "developer_profile_ref": {
-      "profile_id": "string|unknown",
+      "candidate_name": "string|unknown",
       "source_docs": [
         { "doc_id": "string|unknown", "filename": "string|unknown" }
       ]

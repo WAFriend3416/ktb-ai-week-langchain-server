@@ -28,7 +28,7 @@ keyword extraction rules (mandatory):
 - Each keyword field MUST be an array of short phrases or single words.
 - Do NOT use full sentences in any keyword field.
 - Prefer noun phrases or normalized tags (e.g. "fast_iteration", "documentation_focus").
-- Maximum 10 keywords per field.
+- Maximum 4 keywords per field.
 - Do NOT invent keywords. Use ONLY signals explicitly stated in the source text.
 - If no explicit signal exists for a keyword field, return an empty array [].
 - Keywords must be axis-consistent:

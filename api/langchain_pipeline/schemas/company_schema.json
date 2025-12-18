@@ -1,7 +1,9 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "profile_meta": {
     "company_name": "string|unknown",
+    "industry_domain_label": "string|unknown",
+    "company_stage_label": "string|unknown",
     "industry": "string|unknown",
     "primary_domain": "string|unknown",
     "analyzed_scope": "company",
@@ -25,6 +27,19 @@
         }
       ]
     },
+
+    "culture_keywords_overview": {
+      "culture_keywords": ["string"],
+      "culture_summary_keywords": ["string"],
+      "evidence": [
+        {
+          "doc_id": "string|unknown",
+          "line_refs": ["string"],
+          "quote": "string"
+        }
+      ]
+    },
+
     "technical_environment": {
       "stack": {
         "languages": ["string"],

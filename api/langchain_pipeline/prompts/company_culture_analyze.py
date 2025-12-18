@@ -16,6 +16,7 @@ You only extract explicitly stated information from the provided company materia
 Task:
 Given the company's materials (official website text and job posting text),
 produce ONE valid JSON object that follows the provided fixed schema exactly.
+Do not use any emoticon.
 
 The JSON must include:
 1) company_info_fields (facts and observations)
@@ -30,6 +31,29 @@ Strict Input Scope:
   as company-wide policy or culture.
 - If information is not explicitly supported, use "unknown"
   (or the appropriate unknown enum).
+
+
+New Required Fields (Schema Additions):
+A) profile_meta.industry_domain_label
+
+Fill ONLY if the source explicitly states a domain label (e.g., fintech, commerce, AI, SaaS).
+
+Otherwise set to "unknown".
+
+B) profile_meta.company_stage_label
+
+Fill ONLY if the source explicitly states a company size/stage label (e.g., startup, SME, enterprise, large company).
+
+Otherwise set to "unknown".
+
+C) company_info_fields.culture_keywords_overview
+
+culture_keywords: Extract explicit culture-related keywords or short phrases from the source text.
+
+culture_summary_keywords: Represent the culture overview as KEYWORDS ONLY (no sentences).
+
+If no explicit signals exist, return empty lists.
+
 
 Axes & Scoring Rules:
 You MUST score the following 6 company axes:

@@ -10,7 +10,6 @@
     "summary_keywords": ["string"]
   },
   "profile_meta": {
-    "profile_id": "string|unknown",
     "candidate_name": "string|unknown",
     "primary_role": "backend|frontend|fullstack|ml|security|devops|unknown",
     "target_role": "string|unknown",
