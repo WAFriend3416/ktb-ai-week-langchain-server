@@ -16,16 +16,16 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
-from langchain_pipeline.config import (
+from api.langchain_pipeline.config import (
     GOOGLE_API_KEY,
     S3_BUCKET_NAME,
     S3_REGION,
     AWS_ACCESS_KEY_ID,
     AWS_SECRET_ACCESS_KEY,
 )
-from langchain_pipeline.utils.schema_loader import get_schema_for_prompt
-from langchain_pipeline.utils.db_handler import DatabaseHandler
-from langchain_pipeline.prompts import applicant_analyze
+from api.langchain_pipeline.utils.schema_loader import get_schema_for_prompt
+from api.langchain_pipeline.utils.db_handler import DatabaseHandler
+from api.langchain_pipeline.prompts import applicant_analyze
 
 
 class ApplicantAnalysisChain:
@@ -83,7 +83,7 @@ class ApplicantAnalysisChain:
     def _get_s3_loader(self):
         """S3 PDF 로더 지연 초기화"""
         if self._s3_loader is None:
-            from langchain_pipeline.loaders.s3_pdf_loader import S3PDFLoader
+            from api.langchain_pipeline.loaders.s3_pdf_loader import S3PDFLoader
 
             self._s3_loader = S3PDFLoader(
                 bucket_name=S3_BUCKET_NAME,
@@ -98,7 +98,7 @@ class ApplicantAnalysisChain:
     def _get_local_loader(self):
         """로컬 PDF 로더 지연 초기화"""
         if self._local_loader is None:
-            from langchain_pipeline.loaders.local_pdf_loader import LocalPDFLoader
+            from api.langchain_pipeline.loaders.local_pdf_loader import LocalPDFLoader
 
             self._local_loader = LocalPDFLoader(
                 gemini_api_key=GOOGLE_API_KEY

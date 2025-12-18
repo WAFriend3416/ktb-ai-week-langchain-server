@@ -15,10 +15,10 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
-from langchain_pipeline.config import GOOGLE_API_KEY
-from langchain_pipeline.utils.db_handler import DatabaseHandler
-from langchain_pipeline.utils.schema_loader import get_schema_for_prompt
-from langchain_pipeline.prompts import culture_compare
+from api.langchain_pipeline.config import GOOGLE_API_KEY
+from api.langchain_pipeline.utils.db_handler import DatabaseHandler
+from api.langchain_pipeline.utils.schema_loader import get_schema_for_prompt
+from api.langchain_pipeline.prompts import culture_compare
 
 
 def parse_json_with_markdown(text: str) -> dict:

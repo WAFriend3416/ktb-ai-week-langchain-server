@@ -37,16 +37,16 @@ def parse_json_with_markdown(text: str) -> dict:
 
     return json.loads(text)
 
-from langchain_pipeline.config import (
+from api.langchain_pipeline.config import (
     GOOGLE_API_KEY,
     COMPANY_KEYWORDS,
     match_company,
     get_company_sources,
 )
-from langchain_pipeline.scrapers.browser_scraper import BrowserScraper
-from langchain_pipeline.utils.schema_loader import get_schema_for_prompt
-from langchain_pipeline.utils.db_handler import DatabaseHandler
-from langchain_pipeline.prompts import company_data_collect, company_culture_analyze
+from api.langchain_pipeline.scrapers.browser_scraper import BrowserScraper
+from api.langchain_pipeline.utils.schema_loader import get_schema_for_prompt
+from api.langchain_pipeline.utils.db_handler import DatabaseHandler
+from api.langchain_pipeline.prompts import company_data_collect, company_culture_analyze
 
 
 class UnsupportedCompanyError(Exception):
