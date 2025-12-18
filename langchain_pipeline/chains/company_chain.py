@@ -2,7 +2,9 @@
 회사 컬쳐핏 분석 체인
 
 파이프라인 흐름:
-URL 입력 → 스크래핑 → 데이터 수집 → 컬쳐핏 분석 → MongoDB 저장
+URL 입력 → Jina Reader 스크래핑 → 데이터 수집 → 컬쳐핏 분석 → MongoDB 저장
+
+스크래퍼: Jina Reader API (SPA/동적 페이지 자동 처리)
 """
 
 import json
@@ -13,7 +15,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 
 from langchain_pipeline.config import GOOGLE_API_KEY
-from langchain_pipeline.scrapers.gemini_scraper import GeminiScraper
+from langchain_pipeline.scrapers.jina_scraper import JinaScraper
 from langchain_pipeline.utils.schema_loader import get_schema_for_prompt
 from langchain_pipeline.utils.db_handler import DatabaseHandler
 from langchain_pipeline.prompts import company_data_collect, company_culture_analyze
@@ -26,20 +28,22 @@ class CompanyAnalysisChain:
         self,
         model_name: str = "gemini-2.0-flash-exp",
         temperature: float = 0.0,
-        save_to_db: bool = True
+        save_to_db: bool = True,
+        with_image_caption: bool = True
     ):
         """
         Args:
             model_name: Gemini 모델명
             temperature: 생성 온도
             save_to_db: DB 저장 여부
+            with_image_caption: 이미지 캡셔닝 활성화 여부
         """
         self.llm = ChatGoogleGenerativeAI(
             model=model_name,
             google_api_key=GOOGLE_API_KEY,
             temperature=temperature,
         )
-        self.scraper = GeminiScraper(model_name=model_name)
+        self.scraper = JinaScraper(with_image_caption=with_image_caption)
         self.save_to_db = save_to_db
         self.db = DatabaseHandler() if save_to_db else None
 

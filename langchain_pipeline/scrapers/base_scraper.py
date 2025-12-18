@@ -2,7 +2,8 @@
 웹 스크래퍼 추상 베이스 클래스
 
 Strategy 패턴으로 다양한 스크래핑 방식 지원
-- GeminiScraper: Gemini 모델이 직접 URL 접근 (현재)
+- JinaScraper: Jina Reader API (현재 기본, SPA/동적 페이지 지원)
+- GeminiScraper: Gemini 모델이 직접 URL 접근
 - BrowserScraper: Playwright/ChromeDevTools (추후 확장)
 """
 
