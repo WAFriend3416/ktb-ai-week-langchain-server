@@ -1,16 +1,73 @@
 {
-  "_comment": "회사 컬쳐핏 분석 스키마 - AI 팀원 작성 예정",
-  "schema_version": "1.0",
-  "company_meta": {
-    "company_name": "string|unknown",
-    "industry": "string|unknown",
-    "company_size": "startup|small|medium|large|enterprise|unknown",
-    "source_urls": ["string"]
+  "schema_version": "1.0-test",
+  "description": "회사 컬쳐핏 분석 스키마 (테스트용)",
+
+  "company_info": {
+    "company_name": "string - 회사명",
+    "industry": "string - 산업/업종 (예: 핀테크, IT서비스)",
+    "company_size": "string - startup|small|medium|large|enterprise|unknown",
+    "location": "string - 근무지"
   },
-  "culture_analysis": {
-    "_placeholder": "AI 팀원이 상세 스키마 작성 예정"
+
+  "job_info": {
+    "position_title": "string - 포지션명",
+    "team_name": "string - 소속 팀/부서명",
+    "main_responsibilities": ["string - 주요 업무/책임"],
+    "requirements": ["string - 자격 요건"],
+    "preferred": ["string - 우대 사항"]
   },
-  "scoring_axes": {
-    "_placeholder": "구직자 스키마와 매칭되는 평가 축 정의 예정"
-  }
+
+  "tech_stack": {
+    "languages": ["string - 프로그래밍 언어"],
+    "frameworks": ["string - 프레임워크/라이브러리"],
+    "tools": ["string - 개발 도구/인프라"]
+  },
+
+  "culture_signals": {
+    "team_structure": "string - 팀 구조 설명 (예: 사일로, 매트릭스, 스쿼드)",
+    "work_style": "string - 업무 방식 설명",
+    "collaboration_keywords": ["string - 협업 관련 키워드"],
+    "growth_support": ["string - 성장 지원 관련 언급"],
+    "benefits_mentioned": ["string - 복지/혜택 언급"]
+  },
+
+  "culture_fit_scores": {
+    "scoring_policy": {
+      "scale": "0-4",
+      "meaning": {
+        "0": "정보 없음/판단 불가",
+        "1": "약함/부정적 시그널",
+        "2": "보통/일부 시그널",
+        "3": "좋음/명확한 시그널",
+        "4": "매우 강함/구체적 증거"
+      }
+    },
+    "tech_culture": {
+      "score": "number 0-4",
+      "evidence": ["string - 근거"],
+      "summary": "string - 요약"
+    },
+    "collaboration_style": {
+      "score": "number 0-4",
+      "evidence": ["string - 근거"],
+      "summary": "string - 요약"
+    },
+    "growth_environment": {
+      "score": "number 0-4",
+      "evidence": ["string - 근거"],
+      "summary": "string - 요약"
+    },
+    "work_life_balance": {
+      "score": "number 0-4",
+      "evidence": ["string - 근거"],
+      "summary": "string - 요약"
+    },
+    "ownership_expectation": {
+      "score": "number 0-4",
+      "evidence": ["string - 근거"],
+      "summary": "string - 요약"
+    }
+  },
+
+  "overall_summary": "string - 전체 컬쳐핏 요약 (2-3문장)"
 }

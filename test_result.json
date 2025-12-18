@@ -1,0 +1,190 @@
+{
+  "source_url": "https://toss.im/career/job-detail?job_id=4664498003&sub_position_id=4664498003&company=%ED%86%A0%EC%8A%A4",
+  "company_data": {
+    "schema_version": "1.0-test",
+    "description": "회사 컬쳐핏 분석 스키마 (테스트용)",
+    "company_info": {
+      "company_name": "토스",
+      "industry": "unknown",
+      "company_size": "unknown",
+      "location": "unknown"
+    },
+    "job_info": {
+      "position_title": "Frontend Developer (Desktop)",
+      "team_name": "Frontend 챕터",
+      "main_responsibilities": [
+        "토스의 다양한 B2B 비즈니스의 성장을 위해 고객사, 제휴사, 임직원이 함께 사용하는 데스크톱 서비스를 만듭니다.",
+        "토스 전 계열사 모든 임직원들의 생산성을 높이고 모두의 업무 몰입도를 높여, 비효율을 제거하는 중요한 문제에 집중할 수 있도록 지원하는 다양한 데스크톱 서비스를 만듭니다.",
+        "단 1분 만에 프론트엔드 웹 서비스가 빌드되고 배포되는 환경처럼, 최고의 사용감을 위해 프론트엔드 개발 환경을 개선하고 있습니다."
+      ],
+      "requirements": [
+        "React, Vue, Angular 등 SPA 프레임워크 사용에 능숙하신 분이면 좋아요.",
+        "단순히 주어진 개발을 해내는 것보다, 주도적으로 문제를 발견하고 분석해 솔루션을 제안할 수 있는 분이 필요해요.",
+        "복잡하고 어려운 요구사항을 단순한 문제로 추상화하고, 이를 코드로 녹여낼 수 있는 분을 찾고 있어요.",
+        "TypeScript, Flow를 이용한 JavaScript 정적 타입 분석을 경험해보신 분이면 좋아요."
+      ],
+      "preferred": []
+    },
+    "tech_stack": {
+      "languages": [
+        "TypeScript"
+      ],
+      "frameworks": [
+        "React",
+        "Next.js",
+        "Vue",
+        "Angular",
+        "Emotion",
+        "TanStack Query",
+        "Jotai"
+      ],
+      "tools": [
+        "Yarn Berry",
+        "PNPM",
+        "Vite",
+        "ESBuild",
+        "SWC",
+        "GitHub Actions",
+        "CircleCI"
+      ]
+    },
+    "culture_signals": {
+      "team_structure": "사일로와 프론트엔드 챕터에 매트릭스 구조로 속해있습니다. 6~8명의 직군이 하나의 사일로를 이루어 작은 스타트업처럼 자율성을 갖고 일합니다.",
+      "work_style": "주도적으로 문제를 발견하고 분석해 솔루션을 제안",
+      "collaboration_keywords": [
+        "Tech Talk",
+        "코드리뷰"
+      ],
+      "growth_support": [
+        "새로운 기술 토픽 또는 개발 노하우를 공유",
+        "UI 컴포넌트, 비동기 처리와 같이 라이브러리 개발",
+        "Open Source Committee",
+        "Readability Committee"
+      ],
+      "benefits_mentioned": []
+    },
+    "culture_fit_scores": {},
+    "overall_summary": ""
+  },
+  "culture_analysis": {
+    "schema_version": "1.0-test",
+    "description": "회사 컬쳐핏 분석 스키마 (테스트용)",
+    "company_info": {
+      "company_name": "토스",
+      "industry": "unknown",
+      "company_size": "unknown",
+      "location": "unknown"
+    },
+    "job_info": {
+      "position_title": "Frontend Developer (Desktop)",
+      "team_name": "Frontend 챕터",
+      "main_responsibilities": [
+        "토스의 다양한 B2B 비즈니스의 성장을 위해 고객사, 제휴사, 임직원이 함께 사용하는 데스크톱 서비스를 만듭니다.",
+        "토스 전 계열사 모든 임직원들의 생산성을 높이고 모두의 업무 몰입도를 높여, 비효율을 제거하는 중요한 문제에 집중할 수 있도록 지원하는 다양한 데스크톱 서비스를 만듭니다.",
+        "단 1분 만에 프론트엔드 웹 서비스가 빌드되고 배포되는 환경처럼, 최고의 사용감을 위해 프론트엔드 개발 환경을 개선하고 있습니다."
+      ],
+      "requirements": [
+        "React, Vue, Angular 등 SPA 프레임워크 사용에 능숙하신 분이면 좋아요.",
+        "단순히 주어진 개발을 해내는 것보다, 주도적으로 문제를 발견하고 분석해 솔루션을 제안할 수 있는 분이 필요해요.",
+        "복잡하고 어려운 요구사항을 단순한 문제로 추상화하고, 이를 코드로 녹여낼 수 있는 분을 찾고 있어요.",
+        "TypeScript, Flow를 이용한 JavaScript 정적 타입 분석을 경험해보신 분이면 좋아요."
+      ],
+      "preferred": []
+    },
+    "tech_stack": {
+      "languages": [
+        "TypeScript"
+      ],
+      "frameworks": [
+        "React",
+        "Next.js",
+        "Vue",
+        "Angular",
+        "Emotion",
+        "TanStack Query",
+        "Jotai"
+      ],
+      "tools": [
+        "Yarn Berry",
+        "PNPM",
+        "Vite",
+        "ESBuild",
+        "SWC",
+        "GitHub Actions",
+        "CircleCI"
+      ]
+    },
+    "culture_signals": {
+      "team_structure": "사일로와 프론트엔드 챕터에 매트릭스 구조로 속해있습니다. 6~8명의 직군이 하나의 사일로를 이루어 작은 스타트업처럼 자율성을 갖고 일합니다.",
+      "work_style": "주도적으로 문제를 발견하고 분석해 솔루션을 제안",
+      "collaboration_keywords": [
+        "Tech Talk",
+        "코드리뷰"
+      ],
+      "growth_support": [
+        "새로운 기술 토픽 또는 개발 노하우를 공유",
+        "UI 컴포넌트, 비동기 처리와 같이 라이브러리 개발",
+        "Open Source Committee",
+        "Readability Committee"
+      ],
+      "benefits_mentioned": []
+    },
+    "culture_fit_scores": {
+      "scoring_policy": {
+        "scale": "0-4",
+        "meaning": {
+          "0": "정보 없음/판단 불가",
+          "1": "약함/부정적 시그널",
+          "2": "보통/일부 시그널",
+          "3": "좋음/명확한 시그널",
+          "4": "매우 강함/구체적 증거"
+        }
+      },
+      "tech_culture": {
+        "score": 3,
+        "evidence": [
+          "Tech Talk",
+          "코드리뷰",
+          "TypeScript 사용",
+          "최고의 사용감을 위해 프론트엔드 개발 환경을 개선하고 있습니다."
+        ],
+        "summary": "Tech Talk, 코드 리뷰 등 기술 공유 문화가 활발하며, TypeScript를 사용하는 등 기술 스택에 대한 관심도가 높습니다. 프론트엔드 개발 환경 개선에 대한 의지가 엿보입니다."
+      },
+      "collaboration_style": {
+        "score": 3,
+        "evidence": [
+          "사일로와 프론트엔드 챕터에 매트릭스 구조로 속해있습니다.",
+          "6~8명의 직군이 하나의 사일로를 이루어 작은 스타트업처럼 자율성을 갖고 일합니다.",
+          "코드리뷰"
+        ],
+        "summary": "사일로 및 매트릭스 구조를 통해 자율성을 강조하며, 코드 리뷰를 통해 협업을 장려하는 것으로 보입니다. 작은 스타트업처럼 일하는 문화가 특징입니다."
+      },
+      "growth_environment": {
+        "score": 3,
+        "evidence": [
+          "새로운 기술 토픽 또는 개발 노하우를 공유",
+          "UI 컴포넌트, 비동기 처리와 같이 라이브러리 개발",
+          "Open Source Committee",
+          "Readability Committee"
+        ],
+        "summary": "기술 공유, 라이브러리 개발, Open Source Committee, Readability Committee 운영 등 개발자의 성장을 위한 다양한 지원을 제공합니다. 학습과 성장을 중요하게 생각하는 문화입니다."
+      },
+      "work_life_balance": {
+        "score": 1,
+        "evidence": [
+          "benefits_mentioned에 정보 없음"
+        ],
+        "summary": "워라밸 관련 정보는 명시적으로 드러나지 않아 판단이 어렵습니다. 복지 관련 언급이 없어 낮은 점수를 부여합니다."
+      },
+      "ownership_expectation": {
+        "score": 3,
+        "evidence": [
+          "단순히 주어진 개발을 해내는 것보다, 주도적으로 문제를 발견하고 분석해 솔루션을 제안할 수 있는 분이 필요해요.",
+          "6~8명의 직군이 하나의 사일로를 이루어 작은 스타트업처럼 자율성을 갖고 일합니다."
+        ],
+        "summary": "주도적인 문제 해결 능력과 자율성을 강조하는 것으로 보아, 높은 수준의 오너십을 기대하는 것으로 판단됩니다. 사일로 조직 문화 또한 오너십을 강화하는 요소입니다."
+      }
+    },
+    "overall_summary": "토스는 기술 공유와 성장을 장려하며, 개발자에게 높은 수준의 자율성과 오너십을 기대하는 문화를 가지고 있습니다. 사일로 기반의 협업 구조는 개발자들이 주도적으로 문제를 해결하고 혁신을 추구하도록 지원합니다. 워라밸 관련 정보가 부족한 점은 아쉽습니다."
+  }
+}

@@ -28,22 +28,20 @@ class CompanyAnalysisChain:
         self,
         model_name: str = "gemini-2.0-flash-exp",
         temperature: float = 0.0,
-        save_to_db: bool = True,
-        with_image_caption: bool = True
+        save_to_db: bool = True
     ):
         """
         Args:
             model_name: Gemini 모델명
             temperature: 생성 온도
             save_to_db: DB 저장 여부
-            with_image_caption: 이미지 캡셔닝 활성화 여부
         """
         self.llm = ChatGoogleGenerativeAI(
             model=model_name,
             google_api_key=GOOGLE_API_KEY,
             temperature=temperature,
         )
-        self.scraper = JinaScraper(with_image_caption=with_image_caption)
+        self.scraper = JinaScraper()
         self.save_to_db = save_to_db
         self.db = DatabaseHandler() if save_to_db else None
 

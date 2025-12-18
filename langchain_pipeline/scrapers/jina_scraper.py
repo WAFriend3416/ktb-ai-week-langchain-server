@@ -25,7 +25,7 @@ class JinaScraper(BaseScraper):
     def __init__(
         self,
         timeout: float = 60.0,
-        with_image_caption: bool = True,
+        with_image_caption: bool = False,  # 기본값 False (401 오류 방지)
         api_key: Optional[str] = None
     ):
         """
