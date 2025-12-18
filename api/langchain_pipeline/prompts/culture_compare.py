@@ -5,7 +5,7 @@
 입력: 회사 컬쳐핏 JSON + 구직자 컬쳐핏 JSON
 출력: 6개 축 비교 분석 및 종합 매칭 점수 JSON
 
-AI팀 프롬프트 적용 (matching_prompt_gemini01.txt)
+AI팀 프롬프트 final 적용 (matching_prompt_gemini_final.txt)
 """
 
 SYSTEM_MESSAGE = """You are an analytical alignment assistant.
@@ -39,7 +39,6 @@ Allowed axes:
 - growth_learning_orientation
 - product_user_impact_orientation
 - ops_quality_responsibility
-- (optional) communication_documentation
 
 3. Language Rules (IMPORTANT)
 - All summaries, rationales, comparison notes, and overall notes MUST be written in Korean.
@@ -86,6 +85,13 @@ B. rationale
 Do NOT introduce new facts.
 Do NOT speculate.
 Do NOT restate the same sentence repeatedly.
+
+inputs.company_profile_ref.company_name
+- MUST be copied exactly from company profile_meta.company_name.
+
+inputs.developer_profile_ref.candidate_name
+- MUST be copied exactly from developer profile_meta.candidate_name.
+
 
 ────────────────────────
 [Scoring Rules]
@@ -145,8 +151,8 @@ INPUT_VARIABLES = ["company_profile", "developer_profile", "output_schema"]
 # 프롬프트 메타데이터
 PROMPT_METADATA = {
     "name": "culture_compare",
-    "version": "2.0.0",
-    "description": "회사-구직자 컬쳐핏 비교 분석 (AI팀 프롬프트)",
+    "version": "2.1.0",
+    "description": "회사-구직자 컬쳐핏 비교 분석 (AI팀 프롬프트 v2 - 한국어 상세 설명)",
     "author": "AI Team",
-    "last_updated": "2024-12-18",
+    "last_updated": "2024-12-19",
 }
