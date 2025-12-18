@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-웹 스크래퍼 테스트 스크립트
+Jina Reader 기반 웹 스크래퍼 테스트 스크립트
 
 사용법:
     python scripts/test_scraper.py "https://example.com/jobs/123"
-    python scripts/test_scraper.py "https://example.com/jobs/123" --no-ocr
+    python scripts/test_scraper.py "https://example.com/jobs/123" --with-ocr
     python scripts/test_scraper.py "https://example.com/jobs/123" --output result.txt
 """
 
@@ -31,14 +31,17 @@ import os
 # Gemini 설정
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
 
+# Jina Reader API
+JINA_READER_URL = "https://r.jina.ai/"
 
-class WebScraperWithOCR:
-    """이미지 OCR을 포함한 웹 스크래퍼"""
 
-    def __init__(self, enable_ocr: bool = True):
+class JinaReaderScraper:
+    """Jina Reader 기반 웹 스크래퍼"""
+
+    def __init__(self, enable_ocr: bool = False):
         self.enable_ocr = enable_ocr
         self.client = httpx.AsyncClient(
-            timeout=30.0,
+            timeout=60.0,
             follow_redirects=True,
             headers={
                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
@@ -53,76 +56,103 @@ class WebScraperWithOCR:
 
     async def scrape(self, url: str) -> dict:
         """
-        URL에서 모든 텍스트 추출 (이미지 OCR 포함)
+        Jina Reader를 사용하여 URL에서 텍스트 추출
 
         Returns:
             {
                 "url": str,
-                "html_text": str,
-                "image_texts": list[dict],
+                "jina_text": str,
+                "image_texts": list[dict],  # OCR 활성화 시
                 "combined_text": str,
                 "metadata": dict
             }
         """
         print(f"\n🔍 스크래핑 시작: {url}")
 
-        # 1. HTML 가져오기
+        # 1. Jina Reader로 텍스트 추출
+        jina_url = f"{JINA_READER_URL}{url}"
+        print(f"📡 Jina Reader 호출 중...")
+
         try:
-            response = await self.client.get(url)
+            response = await self.client.get(jina_url)
             response.raise_for_status()
-            html = response.text
-            print(f"✅ HTML 가져오기 성공 ({len(html):,} bytes)")
+            jina_text = response.text
+            print(f"✅ Jina Reader 성공 ({len(jina_text):,} chars)")
         except Exception as e:
-            return {"error": f"HTML 가져오기 실패: {e}", "url": url}
+            return {"error": f"Jina Reader 실패: {e}", "url": url}
 
-        # 2. HTML 텍스트 추출
-        soup = BeautifulSoup(html, "html.parser")
-
-        # 불필요한 태그 제거
-        for tag in soup(["script", "style", "nav", "footer", "header", "aside"]):
-            tag.decompose()
-
-        html_text = self._extract_text(soup)
-        print(f"✅ HTML 텍스트 추출 완료 ({len(html_text):,} chars)")
-
-        # 3. 이미지 URL 수집
-        image_urls = self._extract_image_urls(soup, url)
-        print(f"📷 이미지 발견: {len(image_urls)}개")
-
-        # 4. 이미지 OCR (옵션)
+        # 2. 이미지 OCR (옵션)
         image_texts = []
-        if self.enable_ocr and self.vision_model and image_urls:
+        if self.enable_ocr and self.vision_model:
             print(f"🔄 이미지 OCR 진행 중...")
-            image_texts = await self._ocr_images(image_urls)
+            image_texts = await self._extract_and_ocr_images(url)
             ocr_count = sum(1 for t in image_texts if t.get("text"))
-            print(f"✅ OCR 완료: {ocr_count}/{len(image_urls)}개 이미지에서 텍스트 추출")
+            print(f"✅ OCR 완료: {ocr_count}개 이미지에서 텍스트 추출")
 
-        # 5. 텍스트 통합
-        combined_text = self._combine_texts(html_text, image_texts)
+        # 3. 텍스트 통합
+        combined_text = self._combine_texts(jina_text, image_texts)
 
         return {
             "url": url,
-            "html_text": html_text,
+            "jina_text": jina_text,
             "image_texts": image_texts,
             "combined_text": combined_text,
             "metadata": {
-                "html_length": len(html_text),
-                "image_count": len(image_urls),
+                "jina_length": len(jina_text),
+                "image_count": len(image_texts),
                 "ocr_success_count": sum(1 for t in image_texts if t.get("text")),
                 "combined_length": len(combined_text),
             }
         }
 
-    def _extract_text(self, soup: BeautifulSoup) -> str:
-        """HTML에서 텍스트 추출"""
-        # 텍스트 추출
-        text = soup.get_text(separator="\n", strip=True)
+    async def _extract_and_ocr_images(self, url: str) -> list[dict]:
+        """원본 페이지에서 이미지 추출 후 OCR"""
+        results = []
 
-        # 연속 공백/줄바꿈 정리
-        text = re.sub(r'\n{3,}', '\n\n', text)
-        text = re.sub(r' {2,}', ' ', text)
+        try:
+            # 원본 페이지 HTML 가져오기
+            response = await self.client.get(url)
+            response.raise_for_status()
+            soup = BeautifulSoup(response.text, "html.parser")
 
-        return text.strip()
+            # 이미지 URL 추출
+            image_urls = self._extract_image_urls(soup, url)
+            print(f"📷 이미지 발견: {len(image_urls)}개")
+
+            # 이미지 OCR
+            for i, img_url in enumerate(image_urls[:10]):  # 최대 10개
+                try:
+                    print(f"  OCR [{i+1}/{min(len(image_urls), 10)}]: {img_url[:50]}...")
+
+                    # 이미지 다운로드
+                    if img_url.startswith("data:image"):
+                        image_data = base64.b64decode(img_url.split(",")[1])
+                    else:
+                        img_response = await self.client.get(img_url)
+                        img_response.raise_for_status()
+                        image_data = img_response.content
+
+                    # Gemini Vision OCR
+                    text = await self._gemini_ocr(image_data)
+
+                    results.append({
+                        "url": img_url,
+                        "text": text,
+                        "success": bool(text)
+                    })
+
+                except Exception as e:
+                    results.append({
+                        "url": img_url,
+                        "text": "",
+                        "success": False,
+                        "error": str(e)
+                    })
+
+        except Exception as e:
+            print(f"⚠️ 이미지 추출 실패: {e}")
+
+        return results
 
     def _extract_image_urls(self, soup: BeautifulSoup, base_url: str) -> list[str]:
         """이미지 URL 추출"""
@@ -154,7 +184,6 @@ class WebScraperWithOCR:
 
         # 파일 확장자 또는 이미지 서비스 URL
         if not any(parsed.path.lower().endswith(ext) for ext in valid_extensions):
-            # 이미지 서비스 URL 패턴
             if not any(x in url for x in ['image', 'img', 'photo', 'pic', 'cdn']):
                 return False
 
@@ -175,46 +204,9 @@ class WebScraperWithOCR:
 
         return True
 
-    async def _ocr_images(self, image_urls: list[str]) -> list[dict]:
-        """이미지들에서 텍스트 추출 (Gemini Vision)"""
-        results = []
-
-        for i, url in enumerate(image_urls[:10]):  # 최대 10개로 제한
-            try:
-                print(f"  OCR [{i+1}/{min(len(image_urls), 10)}]: {url[:60]}...")
-
-                # 이미지 다운로드
-                if url.startswith("data:image"):
-                    # base64 이미지
-                    image_data = base64.b64decode(url.split(",")[1])
-                else:
-                    response = await self.client.get(url)
-                    response.raise_for_status()
-                    image_data = response.content
-
-                # Gemini Vision으로 OCR
-                text = await self._gemini_ocr(image_data)
-
-                results.append({
-                    "url": url,
-                    "text": text,
-                    "success": bool(text)
-                })
-
-            except Exception as e:
-                results.append({
-                    "url": url,
-                    "text": "",
-                    "success": False,
-                    "error": str(e)
-                })
-
-        return results
-
     async def _gemini_ocr(self, image_data: bytes) -> str:
         """Gemini Vision으로 이미지에서 텍스트 추출"""
         try:
-            # 이미지를 Part로 변환
             image_part = {
                 "mime_type": "image/jpeg",
                 "data": base64.b64encode(image_data).decode()
@@ -236,9 +228,9 @@ class WebScraperWithOCR:
             print(f"    ⚠️ OCR 오류: {e}")
             return ""
 
-    def _combine_texts(self, html_text: str, image_texts: list[dict]) -> str:
-        """HTML 텍스트와 이미지 OCR 텍스트 통합"""
-        parts = [html_text]
+    def _combine_texts(self, jina_text: str, image_texts: list[dict]) -> str:
+        """Jina Reader 텍스트와 이미지 OCR 텍스트 통합"""
+        parts = [jina_text]
 
         ocr_texts = [t["text"] for t in image_texts if t.get("text")]
         if ocr_texts:
@@ -254,19 +246,19 @@ class WebScraperWithOCR:
 
 
 async def main():
-    parser = argparse.ArgumentParser(description="웹 페이지에서 텍스트 추출 (이미지 OCR 포함)")
+    parser = argparse.ArgumentParser(description="Jina Reader 기반 웹 텍스트 추출")
     parser.add_argument("url", help="스크래핑할 URL")
-    parser.add_argument("--no-ocr", action="store_true", help="이미지 OCR 비활성화")
+    parser.add_argument("--with-ocr", action="store_true", help="이미지 OCR 활성화")
     parser.add_argument("--output", "-o", help="결과를 저장할 파일 경로")
 
     args = parser.parse_args()
 
-    # API 키 확인
-    if not args.no_ocr and not GOOGLE_API_KEY:
+    # OCR 사용 시 API 키 확인
+    if args.with_ocr and not GOOGLE_API_KEY:
         print("⚠️ GOOGLE_API_KEY가 설정되지 않았습니다. OCR 없이 진행합니다.")
-        args.no_ocr = True
+        args.with_ocr = False
 
-    scraper = WebScraperWithOCR(enable_ocr=not args.no_ocr)
+    scraper = JinaReaderScraper(enable_ocr=args.with_ocr)
 
     try:
         result = await scraper.scrape(args.url)
@@ -280,9 +272,10 @@ async def main():
         print("📄 추출 결과")
         print("=" * 60)
         print(f"\n📊 메타데이터:")
-        print(f"   - HTML 텍스트: {result['metadata']['html_length']:,} chars")
-        print(f"   - 이미지 수: {result['metadata']['image_count']}개")
-        print(f"   - OCR 성공: {result['metadata']['ocr_success_count']}개")
+        print(f"   - Jina Reader 텍스트: {result['metadata']['jina_length']:,} chars")
+        if args.with_ocr:
+            print(f"   - 이미지 수: {result['metadata']['image_count']}개")
+            print(f"   - OCR 성공: {result['metadata']['ocr_success_count']}개")
         print(f"   - 총 텍스트: {result['metadata']['combined_length']:,} chars")
 
         print("\n" + "-" * 60)
