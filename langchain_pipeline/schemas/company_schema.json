@@ -1,0 +1,16 @@
+{
+  "_comment": "회사 컬쳐핏 분석 스키마 - AI 팀원 작성 예정",
+  "schema_version": "1.0",
+  "company_meta": {
+    "company_name": "string|unknown",
+    "industry": "string|unknown",
+    "company_size": "startup|small|medium|large|enterprise|unknown",
+    "source_urls": ["string"]
+  },
+  "culture_analysis": {
+    "_placeholder": "AI 팀원이 상세 스키마 작성 예정"
+  },
+  "scoring_axes": {
+    "_placeholder": "구직자 스키마와 매칭되는 평가 축 정의 예정"
+  }
+}
