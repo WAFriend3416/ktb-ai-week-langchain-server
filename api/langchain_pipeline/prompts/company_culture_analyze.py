@@ -1,11 +1,11 @@
 """
-회사 컬쳐핏 분석 프롬프트
+회사 컬쳐핏 분석 프롬프트 (v2.1 - Schema 1.1)
 
 역할: 수집된 회사 데이터를 기반으로 컬쳐핏 점수 및 분석 수행
 입력: company_data_collect 프롬프트의 결과 JSON
 출력: 컬쳐핏 점수(0-4) + 근거(evidence) + 요약이 포함된 JSON
 
-AI팀 프롬프트 적용 (company_culture_fit_analysis_prompt.txt)
+AI팀 프롬프트 v2 적용 (company_culture_fit_analysis_prompt_v2.txt)
 """
 
 SYSTEM_MESSAGE = """Role:
@@ -53,6 +53,7 @@ culture_keywords: Extract explicit culture-related keywords or short phrases fro
 culture_summary_keywords: Represent the culture overview as KEYWORDS ONLY (no sentences).
 
 If no explicit signals exist, return empty lists.
+
 
 
 Axes & Scoring Rules:
@@ -109,7 +110,17 @@ HUMAN_MESSAGE_TEMPLATE = """다음 회사 데이터를 분석하여 컬쳐핏 �
 
 ## 분석 지침
 1. 기존 company_info_fields 데이터를 분석합니다.
-2. scoring_axes 섹션의 6개 축을 평가합니다:
+
+2. **profile_meta 새 필수 필드**:
+   - industry_domain_label: 소스에서 명시된 도메인 라벨 (fintech, AI, SaaS 등) 또는 "unknown"
+   - company_stage_label: 소스에서 명시된 회사 규모/단계 라벨 (startup, enterprise 등) 또는 "unknown"
+
+3. **culture_keywords_overview 필수 작성**:
+   - culture_keywords: 소스에서 추출한 문화 관련 키워드/구문 목록
+   - culture_summary_keywords: 문화 개요를 키워드로만 표현 (문장 금지)
+   - 명시적 신호가 없으면 빈 배열 반환
+
+4. scoring_axes 섹션의 6개 축을 평가합니다:
    - technical_fit_company: 기술 스택, 품질 문화
    - execution_style_company: 속도 vs 안정성, 프로토타입 vs 구조화
    - collaboration_style_company: 코드리뷰, 문서화, 크로스펑셔널 협업
@@ -117,14 +128,14 @@ HUMAN_MESSAGE_TEMPLATE = """다음 회사 데이터를 분석하여 컬쳐핏 �
    - growth_orientation_company: 신기술 도입, 자기주도 학습, 피드백 루프
    - work_expectation_company: 근무 강도, 워라밸, 책임 밀도
 
-3. 각 축마다 필수 항목:
+5. 각 축마다 필수 항목:
    - score: 0-4 정수
    - summary: 1-2문장 요약
    - confidence: low|medium|high
    - evidence: [{{doc_id, line_refs, quote}}] (score > 0일 경우 필수)
    - subsignals: 세부 신호 점수
 
-4. extraction_quality: unknown_policy_applied 및 notes
+6. extraction_quality: unknown_policy_applied 및 notes
 
 반드시 유효한 JSON 형식으로만 응답하세요."""
 
@@ -137,8 +148,8 @@ INPUT_VARIABLES = ["company_data", "output_schema"]
 # 프롬프트 메타데이터
 PROMPT_METADATA = {
     "name": "company_culture_analyze",
-    "version": "2.0.0",
-    "description": "회사 데이터 기반 컬쳐핏 분석 (AI팀 프롬프트)",
+    "version": "2.1.0",
+    "description": "회사 데이터 기반 컬쳐핏 분석 (AI팀 프롬프트 v2 - Schema 1.1)",
     "author": "AI Team",
     "last_updated": "2024-12-18",
 }

@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "meta": {
     "generated_at": "string",
     "scoring_version": "string",
@@ -138,4 +138,3 @@
     "overall_notes": "string|unknown"
   }
 }
-
