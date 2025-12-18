@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "generated_at": "string",
+    "scoring_version": "string",
+    "axes_used": ["technical_fit", "execution_style", "collaboration_style", "growth_learning_orientation", "product_user_impact_orientation", "ops_quality_responsibility"],
+    "notes": "string|unknown"
+  },
+  "inputs": {
+    "company_profile_ref": {
+      "profile_id": "string|unknown",
+      "source_docs": [
+        { "doc_id": "string|unknown", "filename": "string|unknown" }
+      ]
+    },
+    "developer_profile_ref": {
+      "profile_id": "string|unknown",
+      "source_docs": [
+        { "doc_id": "string|unknown", "filename": "string|unknown" }
+      ]
+    }
+  },
+  "axis_alignments": {
+    "technical_fit": {
+      "status": "aligned|partial|mismatch|unknown",
+      "axis_score": "0|25|50|75|100|unknown",
+      "summary": "string|unknown",
+      "rationale": {
+        "company_signals": ["string"],
+        "developer_signals": ["string"],
+        "comparison_notes": "string|unknown"
+      },
+      "evidence_refs": {
+        "company": [
+          { "path": "string", "quote": "string|unknown" }
+        ],
+        "developer": [
+          { "path": "string", "quote": "string|unknown" }
+        ]
+      },
+      "followup_questions": ["string"]
+    },
+    "execution_style": {
+      "status": "aligned|partial|mismatch|unknown",
+      "axis_score": "0|25|50|75|100|unknown",
+      "summary": "string|unknown",
+      "rationale": {
+        "company_signals": ["string"],
+        "developer_signals": ["string"],
+        "comparison_notes": "string|unknown"
+      },
+      "evidence_refs": {
+        "company": [{ "path": "string", "quote": "string|unknown" }],
+        "developer": [{ "path": "string", "quote": "string|unknown" }]
+      },
+      "followup_questions": ["string"]
+    },
+    "collaboration_style": {
+      "status": "aligned|partial|mismatch|unknown",
+      "axis_score": "0|25|50|75|100|unknown",
+      "summary": "string|unknown",
+      "rationale": {
+        "company_signals": ["string"],
+        "developer_signals": ["string"],
+        "comparison_notes": "string|unknown"
+      },
+      "evidence_refs": {
+        "company": [{ "path": "string", "quote": "string|unknown" }],
+        "developer": [{ "path": "string", "quote": "string|unknown" }]
+      },
+      "followup_questions": ["string"]
+    },
+    "growth_learning_orientation": {
+      "status": "aligned|partial|mismatch|unknown",
+      "axis_score": "0|25|50|75|100|unknown",
+      "summary": "string|unknown",
+      "rationale": {
+        "company_signals": ["string"],
+        "developer_signals": ["string"],
+        "comparison_notes": "string|unknown"
+      },
+      "evidence_refs": {
+        "company": [{ "path": "string", "quote": "string|unknown" }],
+        "developer": [{ "path": "string", "quote": "string|unknown" }]
+      },
+      "followup_questions": ["string"]
+    },
+    "product_user_impact_orientation": {
+      "status": "aligned|partial|mismatch|unknown",
+      "axis_score": "0|25|50|75|100|unknown",
+      "summary": "string|unknown",
+      "rationale": {
+        "company_signals": ["string"],
+        "developer_signals": ["string"],
+        "comparison_notes": "string|unknown"
+      },
+      "evidence_refs": {
+        "company": [{ "path": "string", "quote": "string|unknown" }],
+        "developer": [{ "path": "string", "quote": "string|unknown" }]
+      },
+      "followup_questions": ["string"]
+    },
+    "ops_quality_responsibility": {
+      "status": "aligned|partial|mismatch|unknown",
+      "axis_score": "0|25|50|75|100|unknown",
+      "summary": "string|unknown",
+      "rationale": {
+        "company_signals": ["string"],
+        "developer_signals": ["string"],
+        "comparison_notes": "string|unknown"
+      },
+      "evidence_refs": {
+        "company": [{ "path": "string", "quote": "string|unknown" }],
+        "developer": [{ "path": "string", "quote": "string|unknown" }]
+      },
+      "followup_questions": ["string"]
+    }
+  },
+  "overall": {
+    "match_score": "number|unknown",
+    "score_band": "low|medium|high|unknown",
+    "confidence": "number|unknown",
+    "scoring": {
+      "weights": {
+        "technical_fit": "number",
+        "execution_style": "number",
+        "collaboration_style": "number",
+        "growth_learning_orientation": "number",
+        "product_user_impact_orientation": "number",
+        "ops_quality_responsibility": "number"
+      },
+      "excluded_axes": ["string"],
+      "calculation_notes": "string|unknown"
+    },
+    "high_alignment_axes": ["string"],
+    "risk_or_mismatch_axes": ["string"],
+    "unknown_axes": ["string"],
+    "overall_notes": "string|unknown"
+  }
+}
+

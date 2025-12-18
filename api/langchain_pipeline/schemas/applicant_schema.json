@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.1",
+  "profile_keywords": {
+    "work_style_keywords": ["string"],
+    "collaboration_keywords": ["string"],
+    "execution_keywords": ["string"],
+    "growth_keywords": ["string"],
+    "ownership_keywords": ["string"],
+    "work_expectation_keywords": ["string"],
+    "summary_keywords": ["string"]
+  },
+  "profile_meta": {
+    "profile_id": "string|unknown",
+    "candidate_name": "string|unknown",
+    "primary_role": "backend|frontend|fullstack|ml|security|devops|unknown",
+    "target_role": "string|unknown",
+    "seniority": "intern|entry|junior|mid|senior|lead|unknown",
+    "years_experience": "number|unknown",
+    "source_docs": [
+      { "doc_id": "resume|portfolio|essay|other", "filename": "string|unknown", "provided_at": "string|unknown" }
+    ]
+  },
+  "user_info_fields": {
+    "basic_profile": {
+      "summary": "string|unknown",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ]
+    },
+    "technical_capability": {
+      "stack": {
+        "languages": ["string"],
+        "frameworks": ["string"],
+        "data": ["string"],
+        "infra_cloud": ["string"],
+        "ops_tools": ["string"]
+      },
+      "ops_deploy_experience": "yes|no|unknown",
+      "scale_traffic_platform_mentioned": "yes|no|unknown",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ]
+    },
+    "project_behavior_data": {
+      "projects": [
+        {
+          "name": "string",
+          "timeframe": "string|unknown",
+          "context_problem": "string|unknown",
+          "responsibility_scope": "string|unknown",
+          "technical_decisions": ["string"],
+          "outcomes_metrics": [
+            { "metric": "string", "before": "string|unknown", "after": "string|unknown", "notes": "string|unknown" }
+          ],
+          "evidence": [
+            { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+          ]
+        }
+      ]
+    },
+    "collaboration_experience": {
+      "summary": "string|unknown",
+      "code_review_participation": "yes|no|unknown",
+      "documentation_communication": "high|medium|low|unknown",
+      "cross_functional_collaboration": "frequent|occasional|rare|unknown",
+      "conflict_coordination_experience": "mentioned|not_mentioned|unknown",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ]
+    },
+    "growth_tendency": {
+      "summary": "string|unknown",
+      "learning_mode": "self_directed|mentored|mixed|unknown",
+      "new_tech_adoption": "high|medium|low|unknown",
+      "feedback_receptiveness": "high|medium|low|unknown",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ]
+    },
+    "work_environment_signals": {
+      "summary": "string|unknown",
+      "work_mode_preference": "remote|hybrid|onsite|unknown",
+      "work_life_balance_vs_immersion": "wlb|immersion|balanced|unknown",
+      "pace_intensity_preference": "high_intensity|moderate|stable|unknown",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ]
+    },
+    "verification_needed_areas": {
+      "missing_or_unmentioned": ["string"],
+      "needs_followup_questions": ["string"]
+    }
+  },
+  "scoring_axes": {
+    "scoring_policy": {
+      "scale": "0-4",
+      "meaning": {
+        "0": "no explicit signal",
+        "1": "weak/indirect mention",
+        "2": "some evidence (limited scope)",
+        "3": "clear evidence (multiple instances or concrete responsibilities)",
+        "4": "strong evidence (clear ownership + concrete outcomes/metrics where applicable)"
+      },
+      "unknown_handling": "If evidence is missing, score must be 0 and confidence must be low."
+    },
+    "technical_fit_user": {
+      "score": "0|1|2|3|4",
+      "summary": "string|unknown",
+      "confidence": "low|medium|high",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ],
+      "subsignals": {
+        "languages_frameworks_depth": "0|1|2|3|4",
+        "infra_cloud_exposure": "0|1|2|3|4",
+        "ops_deploy_monitoring_exposure": "0|1|2|3|4",
+        "scale_platform_exposure": "0|1|2|3|4"
+      }
+    },
+    "execution_style_user": {
+      "score": "0|1|2|3|4",
+      "summary": "string|unknown",
+      "confidence": "low|medium|high",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ],
+      "subsignals": {
+        "speed_vs_stability": "speed|stability|balanced|unknown",
+        "prototype_vs_structure": "prototype|structure|balanced|unknown",
+        "business_impact_vs_tech_quality": "business_impact|tech_quality|balanced|unknown"
+      }
+    },
+    "collaboration_style_user": {
+      "score": "0|1|2|3|4",
+      "summary": "string|unknown",
+      "confidence": "low|medium|high",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ],
+      "subsignals": {
+        "code_review": "0|1|2|3|4",
+        "documentation": "0|1|2|3|4",
+        "cross_functional": "0|1|2|3|4"
+      }
+    },
+    "ownership_user": {
+      "score": "0|1|2|3|4",
+      "summary": "string|unknown",
+      "confidence": "low|medium|high",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ],
+      "subsignals": {
+        "problem_definition_involvement": "0|1|2|3|4",
+        "decision_making": "0|1|2|3|4",
+        "role_self_positioning": "implementer|owner|lead|unknown"
+      }
+    },
+    "growth_orientation_user": {
+      "score": "0|1|2|3|4",
+      "summary": "string|unknown",
+      "confidence": "low|medium|high",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ],
+      "subsignals": {
+        "new_tech_adoption": "0|1|2|3|4",
+        "self_directed_learning": "0|1|2|3|4",
+        "feedback_loop": "0|1|2|3|4"
+      }
+    },
+    "work_expectation_user": {
+      "score": "0|1|2|3|4",
+      "summary": "string|unknown",
+      "confidence": "low|medium|high",
+      "evidence": [
+        { "doc_id": "string|unknown", "line_refs": ["string"], "quote": "string" }
+      ],
+      "subsignals": {
+        "pace_intensity_preference": "0|1|2|3|4",
+        "wlb_vs_immersion_preference": "0|1|2|3|4",
+        "responsibility_density_signals": "0|1|2|3|4"
+      }
+    }
+  },
+  "extraction_quality": {
+    "unknown_policy_applied": "yes|no",
+    "notes": "string|unknown"
+  }
+}
+
